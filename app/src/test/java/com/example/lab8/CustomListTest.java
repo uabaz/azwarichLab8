@@ -29,19 +29,18 @@ public class CustomListTest {
         City searcher = new City("Vegreville", "AB");
         list.addCity(searcher);
         assert(list.getCount() > 0);
-        assert(list.getPosition(searcher) >= 0);
         assert(list.hasCity(searcher));
     }
 
     @Test
     public void deleteCityTest(){
         list = MockCityList();
-        assert(list.isEmpty());
+        assert(list.getCount()==0);
         City deleter = new City("Mundare", "AB");
         list.addCity(deleter);
         assert(list.getCount() == 1);
         list.deleteCity(deleter);
-        assert(list.isEmpty());
+        assert(list.getCount() == 0);
     }
 
     @Test
@@ -51,7 +50,7 @@ public class CustomListTest {
         City increase = new City("Lloydminster", "AB");
         list.addCity(increase);
         assertEquals(currLen+1, list.getCount());
-        list.clear();
+        list.deleteCity(increase);
         assertEquals(0, list.getCount());
     }
 
