@@ -1,6 +1,7 @@
 package com.example.lab8;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,21 @@ public class CustomList extends ArrayAdapter<City> {
     }
 
     public void addCity(City city){
-
+        //add a city object to the list
+        cities.add(city);
     }
 
+    public boolean hasCity(City city){
+        //return cities.contains(city);
+        return false;
+    }
+
+    public void deleteCity(City city){
+        //remove a city
+        if (hasCity(city)){
+            cities.remove(city);
+        } else{
+            Log.d("deleteCity", "No matching city.");
+        }
+    }
 }

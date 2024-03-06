@@ -23,24 +23,35 @@ public class CustomListTest {
         return list;
     }
 
-
-    /**
-     * get the size of the list
-     * @return
-     */
-
-    public int getCount(){
-        return cities.size();
+    @Test
+    public void hasCity(){
+        list = MockCityList();
+        City searcher = new City("Vegreville", "AB");
+        list.addCity(searcher);
+        assert(list.getCount() > 0);
+        assert(list.getPosition(searcher) >= 0);
     }
 
-    /**
-     * add a city object to the list
-     * for the first phase it will be empty
-     * @param city
-     *
-     */
-    public void addCity(City city){
+    @Test
+    public void deleteCity(){
+        list = MockCityList();
+        assert(list.isEmpty());
+        City deleter = new City("Mundare", "AB");
+        list.addCity(deleter);
+        assert(list.getCount() == 1);
+        list.remove(deleter);
+        assert(list.isEmpty());
+    }
 
+    @Test
+    public void countCities(){
+        list = MockCityList();
+        int currLen = list.getCount();
+        City increase = new City("Lloydminster", "AB");
+        list.addCity(increase);
+        assertEquals(currLen+1, list.getCount());
+        list.clear();
+        assertEquals(0, list.getCount());
     }
 
     /**
